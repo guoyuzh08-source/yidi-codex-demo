@@ -1277,8 +1277,8 @@ button {
 
 .recommend-title-row {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 36px;
-  gap: 10px;
+  grid-template-columns: minmax(0, 1fr) 62px;
+  gap: 8px;
   align-items: center;
 }
 
@@ -1294,32 +1294,19 @@ button {
   white-space: nowrap;
 }
 
-.favorite-button {
-  position: relative;
-  width: 32px;
-  height: 32px;
-  border-radius: 50%;
-  color: #292a2e;
-  background: #f7f7f7;
-}
-
-.favorite-button::before {
-  content: "☆";
-  position: absolute;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  font-size: 22px;
-  font-weight: 900;
-}
-
-.favorite-button.is-liked {
-  color: #ff5b83;
-  background: #fff0f4;
-}
-
-.favorite-button.is-liked::before {
-  content: "★";
+.order-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 62px;
+  height: 31px;
+  border-radius: 999px;
+  color: #202124;
+  background: linear-gradient(180deg, #ffe96a, var(--yellow));
+  box-shadow: inset 0 -2px 0 rgba(255, 164, 0, 0.2), 0 7px 14px rgba(255, 203, 35, 0.22);
+  font-size: 13px;
+  font-weight: 950;
+  white-space: nowrap;
 }
 
 .recommend-meta {

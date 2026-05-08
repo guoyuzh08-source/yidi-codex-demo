@@ -461,7 +461,7 @@ function renderRecommendCard(card, index) {
       <div class="recommend-body">
         <div class="recommend-title-row">
           <h2>${escapeHtml(card.title)}</h2>
-          <button class="favorite-button" type="button" aria-label="收藏${escapeHtml(card.title)}"></button>
+          <button class="order-button" type="button" aria-label="去${escapeHtml(card.title)}下单">去下单</button>
         </div>
         <p class="recommend-meta">${meta}<i>${escapeHtml(card.distance)}</i></p>
         <div class="specialty-row"><span>特色菜</span><b>${escapeHtml(card.specialty)}</b></div>
@@ -710,11 +710,10 @@ recommendStage.addEventListener("keydown", (event) => {
 });
 
 recommendStage.addEventListener("click", (event) => {
-  const button = closestEventTarget(event, ".favorite-button");
+  const button = closestEventTarget(event, ".order-button");
 
   if (button) {
-    button.classList.toggle("is-liked");
-    showToast(button.classList.contains("is-liked") ? "已收藏这家推荐商家" : "已取消收藏");
+    showToast("已为你选中这家推荐商家");
     return;
   }
 
