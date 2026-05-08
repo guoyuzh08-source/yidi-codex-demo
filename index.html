@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="light" />
+    <title>北京外卖首页 Demo</title>
+    <link rel="stylesheet" href="./styles.css?v=nearby-coupon-subfilter-1" />
+  </head>
+  <body>
+    <div class="phone-screen">
+      <header class="guide-hero">
+        <div class="status-bar" aria-label="手机状态栏">
+          <time>9:41</time>
+          <div class="status-icons" aria-hidden="true">
+            <span class="signal"><i></i><i></i><i></i><i></i></span>
+            <span class="wifi"></span>
+            <span class="battery"><i></i></span>
+          </div>
+        </div>
+
+        <div class="hero-map" aria-hidden="true"></div>
+        <div class="kite" aria-hidden="true"></div>
+        <div class="temple-scene" aria-hidden="true">
+          <span class="pin"></span>
+          <span class="tree tree-a"></span>
+          <span class="tree tree-b"></span>
+          <span class="tree tree-c"></span>
+          <span class="temple-spire"></span>
+          <span class="temple-roof roof-a"></span>
+          <span class="temple-mid"></span>
+          <span class="temple-roof roof-b"></span>
+          <span class="temple-base"></span>
+          <span class="temple-shadow"></span>
+        </div>
+
+        <button class="location-button" type="button" aria-label="切换收货地址">
+          <span class="location-dot"></span>
+          <span>望京恒电大厦BC座</span>
+          <span class="chevron"></span>
+        </button>
+
+        <button class="bell-button" type="button" aria-label="通知">
+          <span></span>
+        </button>
+
+        <h1>北京欢迎您</h1>
+      </header>
+
+      <main class="content">
+        <section class="search-section" aria-label="搜索">
+          <div class="search-box">
+            <span class="search-icon" aria-hidden="true"></span>
+            <input id="searchInput" type="search" value="川成元麻辣香锅" aria-label="搜索美食或商家" />
+            <button id="searchButton" type="button">搜索</button>
+          </div>
+        </section>
+
+        <section class="category-strip" aria-label="常用入口">
+          <button class="category-item" type="button" data-query="美食">
+            <span class="category-art art-food"><i></i></span>
+            <span>美食</span>
+          </button>
+          <button class="category-item" type="button" data-query="甜点饮品">
+            <span class="category-art art-dessert"><i></i></span>
+            <span>甜点饮品</span>
+          </button>
+          <button class="category-item" type="button" data-query="超市便利">
+            <span class="category-art art-market"><i></i></span>
+            <span>超市便利</span>
+          </button>
+          <button class="category-item" type="button" data-query="蔬菜水果">
+            <span class="category-art art-fruit"><i></i></span>
+            <span>蔬菜水果</span>
+          </button>
+          <button class="category-item" type="button" data-query="买药">
+            <span class="category-art art-med"><i></i></span>
+            <span>美团买药</span>
+          </button>
+          <button class="category-item" type="button" data-query="拼好饭">
+            <span class="category-art art-meal"><i></i></span>
+            <span>拼好饭</span>
+          </button>
+        </section>
+
+        <div class="pager-dots" aria-hidden="true"><span></span><span></span></div>
+
+        <div class="scheme-tabs" role="tablist" aria-label="推荐设计方案">
+          <button class="scheme-tab active" type="button" role="tab" aria-selected="true" data-scheme="one">方案一</button>
+          <button class="scheme-tab" type="button" role="tab" aria-selected="false" data-scheme="two">方案二</button>
+          <button class="scheme-tab" type="button" role="tab" aria-selected="false" data-scheme="three">方案三</button>
+        </div>
+
+        <section class="recommend-stack-section scheme-one" id="recommendSection" aria-label="商家推荐">
+          <div class="recommend-stage" id="recommendStage" aria-live="polite" tabindex="0"></div>
+          <div id="schemeExtra" class="scheme-extra"></div>
+        </section>
+
+        <section class="nearby-section" aria-label="附近商家">
+          <div class="sticky-tabs">
+            <button class="merchant-tab active" type="button" data-filter="nearby">附近商家</button>
+            <button class="merchant-tab" type="button" data-filter="special">特价外卖</button>
+            <button class="deal-pill" type="button" data-filter="deal">￥27.1 鸡纵豆花饭+大...</button>
+          </div>
+          <div class="nearby-quick-filters" aria-label="附近商家快筛">
+            <button class="quick-filter coupon-filter" type="button" data-filter="coupon">红包可用商家</button>
+          </div>
+
+          <div id="resultHint" class="result-hint" aria-live="polite"></div>
+          <div id="merchantList" class="merchant-list"></div>
+        </section>
+      </main>
+
+      <nav class="tabbar" aria-label="底部导航">
+        <button class="tabbar-item active" type="button" data-page="首页">
+          <span class="nav-icon nav-home" aria-hidden="true"></span>
+          <span>首页</span>
+        </button>
+        <button class="tabbar-item" type="button" data-page="会员">
+          <span class="nav-icon nav-crown" aria-hidden="true"></span>
+          <span>会员</span>
+        </button>
+        <button class="tabbar-item" type="button" data-page="订单">
+          <span class="nav-icon nav-order" aria-hidden="true"></span>
+          <span>订单</span>
+        </button>
+        <button class="tabbar-item" type="button" data-page="我的">
+          <span class="nav-icon nav-user" aria-hidden="true"></span>
+          <span>我的</span>
+        </button>
+      </nav>
+
+      <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    </div>
+
+    <script src="./app.js?v=nearby-coupon-subfilter-1"></script>
+  </body>
+</html>
