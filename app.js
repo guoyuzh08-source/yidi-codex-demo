@@ -730,6 +730,10 @@ recommendStage.addEventListener("click", (event) => {
     return;
   }
 
+  if (closestEventTarget(event, ".in-card-curated")) {
+    return;
+  }
+
   const activeAutoCard = closestEventTarget(event, ".recommend-card--auto.is-active");
 
   if (activeAutoCard) {

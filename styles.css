@@ -891,7 +891,7 @@ button {
 }
 
 .recommend-stack-section.is-auto-expanded .recommend-stage {
-  height: 748px;
+  height: 350px;
 }
 
 .recommend-card {
@@ -899,6 +899,7 @@ button {
   left: 50%;
   top: 0;
   width: calc(100% - 64px);
+  height: 332px;
   overflow: hidden;
   min-height: 332px;
   border-radius: 23px;
@@ -952,7 +953,8 @@ button {
 }
 
 .recommend-card.is-expanded-auto {
-  min-height: 732px;
+  height: 332px;
+  min-height: 332px;
 }
 
 .recommend-card--auto {
@@ -963,14 +965,17 @@ button {
 
 .auto-card-shell {
   display: grid;
+  grid-template-rows: auto auto minmax(0, 1fr);
   gap: 10px;
+  height: 100%;
   min-height: 332px;
+  min-width: 0;
   padding: 16px;
 }
 
 .recommend-card.is-expanded-auto .auto-card-shell {
-  min-height: 732px;
-  align-content: start;
+  min-height: 332px;
+  align-content: stretch;
 }
 
 .auto-card-head {
@@ -1445,14 +1450,22 @@ button {
 }
 
 .in-card-curated {
-  margin-top: 12px;
+  min-height: 0;
+  margin-top: 0;
+  overflow-y: auto;
+  overscroll-behavior: contain;
   padding: 11px;
   border-radius: 16px;
+  scrollbar-width: none;
   background:
     radial-gradient(circle at 92% 8%, rgba(255, 224, 123, 0.26), transparent 30%),
     linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 249, 239, 0.98));
   box-shadow: inset 0 0 0 1px rgba(255, 212, 152, 0.62);
   animation: popRestaurant 0.42s cubic-bezier(0.18, 0.88, 0.34, 1.08) both;
+}
+
+.in-card-curated::-webkit-scrollbar {
+  display: none;
 }
 
 .in-card-curated .ai-bubble-head {
@@ -2452,7 +2465,7 @@ button {
   }
 
   .recommend-stack-section.is-auto-expanded .recommend-stage {
-    height: 764px;
+    height: 356px;
   }
 
   .recommend-photo {
