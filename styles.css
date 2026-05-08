@@ -1269,6 +1269,8 @@ button {
 
 .recommend-body {
   position: relative;
+  display: grid;
+  gap: 7px;
   padding: 10px 12px 11px;
   background:
     linear-gradient(180deg, rgba(255, 255, 255, 0.82), #fff 21%),
@@ -1310,35 +1312,77 @@ button {
 }
 
 .recommend-meta {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
-  flex-wrap: wrap;
-  gap: 5px 8px;
-  margin: 5px 0 7px;
+  gap: 8px;
+  min-width: 0;
+  margin: 0;
   color: #8b8c92;
   font-size: 13px;
   line-height: 1.2;
 }
 
+.recommend-metrics {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
 .recommend-meta b {
   color: #1f2024;
   font-weight: 950;
+  flex: 0 0 auto;
+}
+
+.recommend-meta span span {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .recommend-meta i {
-  margin-left: auto;
   color: #8b8c92;
   font-style: normal;
+  white-space: nowrap;
+}
+
+.recommend-feature-row {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+}
+
+.benefit-tag {
+  display: inline-flex;
+  align-items: center;
+  height: 25px;
+  max-width: 92px;
+  overflow: hidden;
+  padding: 0 9px;
+  border-radius: 999px;
+  color: #c86121;
+  background: #fff2dd;
+  box-shadow: inset 0 0 0 1px rgba(230, 176, 113, 0.22);
+  font-size: 12px;
+  font-weight: 900;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .specialty-row {
   display: inline-flex;
   align-items: center;
   max-width: 100%;
-  min-height: 25px;
-  margin: -1px 0 7px;
+  height: 25px;
+  margin: 0;
   overflow: hidden;
-  padding: 4px 11px 4px 5px;
+  padding: 0 11px 0 5px;
   border-radius: 999px;
   color: #9a5f25;
   background: linear-gradient(180deg, #fff7e5, #ffe9c6);
@@ -1371,8 +1415,8 @@ button {
 
 .recommend-reason {
   position: relative;
-  min-height: 92px;
-  padding: 9px 11px 10px;
+  min-height: 83px;
+  padding: 9px 11px 9px;
   overflow: hidden;
   border-radius: 14px;
   background:
@@ -1393,27 +1437,50 @@ button {
 }
 
 .recommend-reason strong {
-  margin-right: 8px;
+  flex: 0 0 auto;
+  margin-right: 0;
   color: #1f2024;
   font-size: 14px;
   font-weight: 950;
 }
 
-.recommend-reason span {
+.recommend-reason-head {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  min-width: 0;
+  margin-bottom: 6px;
+}
+
+.recommend-chips {
   display: inline-flex;
   align-items: center;
+  gap: 5px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.recommend-chips span {
+  display: inline-flex;
+  align-items: center;
+  flex: 0 1 auto;
   min-height: 22px;
-  margin: 0 3px 5px 0;
   padding: 0 8px;
+  overflow: hidden;
   border-radius: 7px;
   color: #a96b43;
   background: #ffe8c9;
   font-size: 12px;
   font-weight: 800;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.recommend-reason span::before {
+.recommend-chips span::before {
   content: "";
+  flex: 0 0 auto;
   width: 9px;
   height: 9px;
   margin-right: 4px;

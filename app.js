@@ -445,11 +445,12 @@ function renderRecommendCard(card, index) {
     `;
   }
 
-  const meta = card.meta.map((item, metaIndex) => {
+  const primaryMeta = card.meta.slice(0, 3).map((item, metaIndex) => {
     return metaIndex === 0
       ? `<b>${escapeHtml(item)}</b>`
       : `<span>${escapeHtml(item)}</span>`;
   }).join("");
+  const benefit = card.meta[3] || "";
   const chips = card.chips.map((chip) => `<span>${escapeHtml(chip)}</span>`).join("");
 
   return `
@@ -463,11 +464,19 @@ function renderRecommendCard(card, index) {
           <h2>${escapeHtml(card.title)}</h2>
           <button class="order-button" type="button" aria-label="去${escapeHtml(card.title)}下单">去下单</button>
         </div>
-        <p class="recommend-meta">${meta}<i>${escapeHtml(card.distance)}</i></p>
-        <div class="specialty-row"><span>特色菜</span><b>${escapeHtml(card.specialty)}</b></div>
+        <p class="recommend-meta">
+          <span class="recommend-metrics">${primaryMeta}</span>
+          <i>${escapeHtml(card.distance)}</i>
+        </p>
+        <div class="recommend-feature-row">
+          ${benefit ? `<span class="benefit-tag">${escapeHtml(benefit)}</span>` : ""}
+          <span class="specialty-row"><span>特色菜</span><b>${escapeHtml(card.specialty)}</b></span>
+        </div>
         <div class="recommend-reason">
-          <strong>推荐理由</strong>
-          ${chips}
+          <div class="recommend-reason-head">
+            <strong>推荐理由</strong>
+            <span class="recommend-chips">${chips}</span>
+          </div>
           <p>${escapeHtml(card.reason)}</p>
         </div>
       </div>
