@@ -325,7 +325,7 @@ function resetSchemeOneExpansion() {
 function startSchemeOneReveal() {
   clearSchemeOneReveal();
   state.schemeOneExpanded = true;
-  state.schemeOneVisibleCount = 0;
+  state.schemeOneVisibleCount = 1;
   renderRecommendationShell();
 
   schemeOneRevealTimer = window.setInterval(() => {
@@ -412,6 +412,8 @@ function renderSchemeOneDialogueProgress() {
     list.insertAdjacentHTML("beforeend", renderCuratedRestaurant(curatedRestaurants[index], index, { dialogue: true }));
   }
 
+  panel.scrollTo({ top: panel.scrollHeight, behavior: "smooth" });
+
   const typingIndicator = panel.querySelector(".typing-restaurant");
   if (typingIndicator && state.schemeOneVisibleCount >= curatedRestaurants.length) {
     typingIndicator.remove();
@@ -421,37 +423,23 @@ function renderSchemeOneDialogueProgress() {
 function renderRecommendCard(card, index) {
   const isSchemeOneFourth = state.activeScheme === "one" && index === 3;
   const isSchemeOneExpanded = isSchemeOneFourth && state.schemeOneExpanded;
-  const hasMoreDialogueItems = state.schemeOneVisibleCount < curatedRestaurants.length;
 
   if (isSchemeOneFourth) {
+    const visibleCount = isSchemeOneExpanded ? state.schemeOneVisibleCount : curatedRestaurants.length;
+    const isRevealingRestaurants = isSchemeOneExpanded && visibleCount < curatedRestaurants.length;
+
     return `
       <article class="recommend-card recommend-card--auto${isSchemeOneExpanded ? " is-expanded-auto" : ""}" data-card="${index}">
-        <div class="auto-card-shell">
-          <div class="auto-card-head">
-            <span>北京特色精选</span>
-            <h2>继续推荐 5 家北京味餐厅</h2>
-            <p>按游客/出差用户更关心的特色菜来排，点外卖也能知道这家店最该吃什么。</p>
+        <div class="auto-card-shell auto-card-shell--restaurants">
+          <div class="in-card-curated" aria-label="卡片内精选推荐" aria-live="polite">
+            <div class="curated-list">${renderCuratedItems({ dialogue: true, limit: visibleCount })}</div>
+            ${isRevealingRestaurants ? `
+              <div class="typing-restaurant" aria-live="polite">
+                <span></span><span></span><span></span>
+                <b>正在继续推荐下一家</b>
+              </div>
+            ` : ""}
           </div>
-          <button class="in-card-toggle" type="button" data-one-toggle aria-expanded="${isSchemeOneExpanded ? "true" : "false"}">
-            ${isSchemeOneExpanded ? "收起推荐" : "展开推荐餐厅"}
-          </button>
-          ${!isSchemeOneExpanded ? `
-            <div class="auto-card-preview">
-              <span>已准备好 5 家精选</span>
-              <b>点击卡片展开</b>
-            </div>
-          ` : ""}
-          ${isSchemeOneExpanded ? `
-            <div class="in-card-curated" aria-label="卡片内精选推荐" aria-live="polite">
-              <div class="curated-list">${renderCuratedItems({ dialogue: true, limit: state.schemeOneVisibleCount })}</div>
-              ${hasMoreDialogueItems ? `
-                <div class="typing-restaurant" aria-live="polite">
-                  <span></span><span></span><span></span>
-                  <b>正在继续推荐下一家</b>
-                </div>
-              ` : ""}
-            </div>
-          ` : ""}
         </div>
       </article>
     `;
@@ -731,13 +719,6 @@ recommendStage.addEventListener("click", (event) => {
   }
 
   if (closestEventTarget(event, ".in-card-curated")) {
-    return;
-  }
-
-  const activeAutoCard = closestEventTarget(event, ".recommend-card--auto.is-active");
-
-  if (activeAutoCard) {
-    toggleSchemeOneCardRecommendation();
     return;
   }
 

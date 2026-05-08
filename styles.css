@@ -989,6 +989,15 @@ button {
   align-content: stretch;
 }
 
+.auto-card-shell--restaurants {
+  display: block;
+  padding: 12px;
+}
+
+.auto-card-shell--restaurants .in-card-curated {
+  height: 100%;
+}
+
 .auto-card-head {
   display: grid;
   gap: 7px;
